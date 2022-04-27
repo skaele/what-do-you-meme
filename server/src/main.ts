@@ -1,14 +1,16 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { createDatabase } from 'typeorm-extension'
-import postgresConnection from './app-settings/postgres-connection'
+import postgresConnection from './core/postgres-connection'
 import { ConnectionOptions } from 'typeorm'
+import { ValidationPipe } from '@nestjs/common'
 
 async function bootstrap() {
     await createDatabase({ ifNotExist: true, characterSet: 'UTF8' }, postgresConnection as ConnectionOptions)
 
     const app = await NestFactory.create(AppModule)
-    await app.listen(3000)
+    app.useGlobalPipes(new ValidationPipe())
+    await app.listen(5000)
 }
 
 bootstrap()
