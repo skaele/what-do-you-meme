@@ -1,32 +1,29 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import postgresConnection from './core/postgres-connection'
-import { GraphQLModule } from '@nestjs/graphql'
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
-import { UsersModule } from './users/users.module'
-import { User } from './users/entities/user.entity'
 import { AuthModule } from './auth/auth.module'
+import { CardsModule } from './cards/cards.module'
+import { Card } from './cards/entities/card.entity'
+import postgresConnection from './core/postgres-connection'
+import { Image } from './images/entities/image.entity'
+import { ImagesModule } from './images/images.module'
+import { User } from './users/entities/user.entity'
+import { UserModule } from './users/user.module'
+import { QuizModule } from './quiz/quiz.module'
+import { Question } from './quiz/entities/question.entity'
+import { Quiz } from './quiz/entities/quiz.entity'
+import { Solution } from './quiz/entities/solution.entity'
 
 @Module({
     imports: [
         TypeOrmModule.forRoot({
             ...postgresConnection,
-            entities: [User],
+            entities: [User, Image, Card, Question, Quiz, Solution],
         }),
-        GraphQLModule.forRoot<ApolloDriverConfig>({
-            driver: ApolloDriver,
-            autoSchemaFile: 'src/schema.gql',
-            playground: false,
-            sortSchema: true,
-            plugins: [ApolloServerPluginLandingPageLocalDefault()],
-        }),
-        UsersModule,
+        UserModule,
         AuthModule,
+        CardsModule,
+        ImagesModule,
+        QuizModule,
     ],
-    controllers: [AppController],
-    providers: [AppService],
 })
 export class AppModule {}

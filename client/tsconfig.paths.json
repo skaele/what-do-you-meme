@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "@features/*": ["features/*"],
+            "@config/*": ["./shared/config/*"],
+            "@utils/*": ["./shared/lib/*"],
+            "@pages/*": ["./pages/*"],
+            "@pages": ["./pages"],
+            "@ui": ["./shared/ui"],
+            "@icons/*": ["./shared/icons/*"],
+            "@widgets/*": ["./widgets/*"],
+            "@ui/*": ["./shared/ui/*"],
+            "@utility-types/*": ["./shared/types/*"],
+            "@theme": ["./shared/ui/theme"],
+            "@ui/icons": ["./shared/ui/icons"],
+            "@models/*": ["./shared/api/models/*"],
+            "@entities/*": ["./entities/*"],
+            "@api": ["./shared/api/"],
+            "@api/*": ["./shared/api/*"],
+            "@app/*": ["./app/*"]
+        }
+    }
+}

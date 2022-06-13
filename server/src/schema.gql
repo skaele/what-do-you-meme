@@ -2,41 +2,43 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Auth {
-  """Example field (placeholder)"""
-  exampleField: Int!
+input CreateRoleInput {
+  description: String!
+  value: String!
 }
 
-input CreateAuthInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+input LoginInput {
+  loginOrEmail: String!
+  password: String!
 }
 
-input CreateUserInput {
+type Mutation {
+  createRole(createRoleInput: CreateRoleInput!): Role!
+  login(user: LoginInput!): User!
+  logout: User!
+  refreshToken: User!
+  register(user: RegistrationInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Query {
+  findByLoginOrEmail(emailOrLogin: String!): User!
+  getRoleByValue(value: String!): Role!
+  user(id: String!): User!
+  users: [User!]!
+}
+
+input RegistrationInput {
   email: String!
   login: String!
   name: String!
   password: String!
 }
 
-type Mutation {
-  createAuth(createAuthInput: CreateAuthInput!): Auth!
-  createUser(createUserInput: CreateUserInput!): User!
-  removeAuth(id: Int!): Auth!
-  updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-}
-
-type Query {
-  auth(id: Int!): Auth!
-  user(id: String!): User!
-  users: [User!]!
-}
-
-input UpdateAuthInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+type Role {
+  description: String!
+  id: String!
+  value: String!
 }
 
 input UpdateUserInput {
@@ -50,5 +52,4 @@ type User {
   id: String!
   login: String!
   name: String!
-  password: String!
 }

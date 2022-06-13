@@ -11,7 +11,7 @@ module.exports = {
             version: 'detect',
         },
     },
-    plugins: ['prettier', '@typescript-eslint', '@graphql-eslint'],
+    plugins: ['prettier', '@typescript-eslint'],
     env: {
         browser: true,
         es6: true,
@@ -35,15 +35,4 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         'react/jsx-key': 1,
     },
-    overrides: [
-        {
-            files: ['*.gql'],
-            parser: '@graphql-eslint/eslint-plugin',
-            plugins: ['@graphql-eslint'],
-            rules: {
-                'prettier/prettier': 0,
-                'max-len': 0,
-            },
-        },
-    ],
 }
